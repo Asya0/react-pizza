@@ -4,19 +4,14 @@ import Filters from './components/Filters/Filters';
 import PizzaCard from './components/PizzaCard/PizzaCard';
 import Cart from './components/Cart/Cart';
 import Footer from './components/Footer/Footer';
-import useCart from './hooks/useCart';
-import useFilter from './hooks/useFilter';
 import { CATEGORIES } from './constants/categories';
 import { pizzas } from './constants/pizzas';
 
 const App = () => {
-  const { cart, addToCart, removeFromCart, updateQuantity, totalPrice, totalItems } = useCart();
-
-  const { activeCategory, setActiveCategory, sortBy, setSortBy, filteredItems } = useFilter(pizzas);
-
-  const handleOrder = () => {
-    alert('Заказ оформлен!');
-  };
+  const cart = [];
+  const filteredItems = pizzas;
+  const totalPrice = 0;
+  const totalItems = 0;
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -27,10 +22,10 @@ const App = () => {
           <div className="mb-10">
             <Filters
               categories={CATEGORIES}
-              activeCategory={activeCategory}
-              onCategoryChange={setActiveCategory}
-              sortBy={sortBy}
-              onSortChange={setSortBy}
+              activeCategory={CATEGORIES[0].id}
+              onCategoryChange={() => {}}
+              sortBy="popular"
+              onSortChange={() => {}}
             />
           </div>
 
@@ -40,8 +35,9 @@ const App = () => {
                 <PizzaCard
                   key={pizza.id}
                   pizza={pizza}
-                  onAddToCart={addToCart}
-                  cartItem={cart.find((item) => item.id === pizza.id)}
+                  onAddToCart={() => {}}
+                  cartItem={undefined}
+                  onClickAdd={() => {}}
                 />
               ))}
             </div>
@@ -50,10 +46,10 @@ const App = () => {
           <div className="mb-16">
             <Cart
               cart={cart}
-              onRemoveFromCart={removeFromCart}
-              onUpdateQuantity={updateQuantity}
+              onRemoveFromCart={() => {}}
+              onUpdateQuantity={() => {}}
               totalPrice={totalPrice}
-              onOrder={handleOrder}
+              onOrder={() => {}}
             />
           </div>
         </div>
