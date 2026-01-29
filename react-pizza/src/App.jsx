@@ -4,7 +4,6 @@ import Filters from './components/Filters/Filters';
 import PizzaCard from './components/PizzaCard/PizzaCard';
 import Cart from './components/Cart/Cart';
 import Footer from './components/Footer/Footer';
-import { CATEGORIES } from './constants/categories';
 import { pizzas } from './constants/pizzas';
 
 const App = () => {
@@ -20,13 +19,7 @@ const App = () => {
 
         <div className="py-8">
           <div className="mb-10">
-            <Filters
-              categories={CATEGORIES}
-              activeCategory={CATEGORIES[0].id}
-              onCategoryChange={() => {}}
-              sortBy="popular"
-              onSortChange={() => {}}
-            />
+            <Filters onCategoryChange={() => {}} sortBy="popular" onSortChange={() => {}} />
           </div>
 
           <div className="mb-12">

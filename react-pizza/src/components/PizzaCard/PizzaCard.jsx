@@ -1,6 +1,19 @@
+import React, { useState } from 'react';
+
 const PizzaCard = ({ pizza, onAddToCart, cartItem, onClickAdd }) => {
+  const [selectedSize, setSelectedSize] = useState('26');
+  const typesNames = ['тонкое', 'традиционное'];
+  const [activeType, setActiveType] = useState(0);
+
+  const handleSizeClick = (size) => {
+    setSelectedSize(size);
+  };
+  const handleTypeClick = (typeId) => {
+    setActiveType(typeId);
+  };
+
   return (
-    <div className="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden">
+    <div className="relative bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden">
       <div className="p-6">
         {/* <img
           src={pizza.imageUrl}
@@ -9,6 +22,59 @@ const PizzaCard = ({ pizza, onAddToCart, cartItem, onClickAdd }) => {
         /> */}
         <div className="w-full h-48 flex items-center justify-center text-6xl mb-4 bg-gray-100 rounded-lg">
           {pizza.imageUrl}
+        </div>
+        <div className="absolute top-3 left-3 flex flex-col gap-2">
+          {pizza.isNew && (
+            <span className="bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full">
+              Новинка
+            </span>
+          )}
+          {pizza.isSpicy && (
+            <span className="bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full">
+              Острая!
+            </span>
+          )}
+        </div>
+
+        <div className="mb-6">
+          <div className="flex gap-2">
+            {pizza.types.map((typeId) => (
+              <span
+                className={`
+                  flex-1 py-2 px-3 rounded-lg text-sm font-medium transition-all duration-200 cursor-pointer
+                  ${
+                    activeType === typeId
+                      ? 'bg-orange-100 text-orange-700 border border-orange-300 '
+                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200 border border-transparent'
+                  }
+                  `}
+                onClick={() => handleTypeClick(typeId)}>
+                {typesNames[typeId]}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <div className="mb-6">
+          <div className="flex gap-2">
+            {pizza.sizes.map((size) => (
+              <button
+                key={size}
+                className={`
+                  flex-1 py-2 px-3 rounded-lg text-sm font-medium transition-all duration-200
+                  ${
+                    selectedSize === size
+                      ? 'bg-orange-100 text-orange-700 border border-orange-300'
+                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200 border border-transparent'
+                  }
+                `}
+                onClick={() => handleSizeClick(size)}>
+                <div className="flex justify-between items-center mb-2">
+                  <span className="text-sm text-gray-500">{size} см. </span>
+                </div>
+              </button>
+            ))}
+          </div>
         </div>
 
         <h3 className="text-xl font-bold text-gray-800 mb-2">{pizza.name}</h3>

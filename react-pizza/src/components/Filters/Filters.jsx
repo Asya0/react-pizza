@@ -1,8 +1,20 @@
-const Filters = ({ categories, activeCategory, onCategoryChange, sortBy, onSortChange }) => {
+import { useState } from 'react';
+import { CATEGORIES } from '../../constants/categories';
+
+const Filters = ({ onCategoryChange, sortBy, onSortChange }) => {
+  const [activeCategory, setActiveCategory] = useState('all');
+
+  const handleCategoryClick = (categoryId) => {
+    setActiveCategory(categoryId);
+    if (onCategoryChange) {
+      onCategoryChange(categoryId);
+    }
+  };
+
   return (
     <section className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-6">
       <div className="flex flex-wrap gap-3">
-        {categories.map((category) => (
+        {CATEGORIES.map((category) => (
           <button
             key={category.id}
             className={`
@@ -14,7 +26,7 @@ const Filters = ({ categories, activeCategory, onCategoryChange, sortBy, onSortC
               }
               hover:scale-[1.02] active:scale-[0.98]
             `}
-            onClick={() => onCategoryChange(category.id)}>
+            onClick={() => handleCategoryClick(category.id)}>
             {category.name}
           </button>
         ))}
