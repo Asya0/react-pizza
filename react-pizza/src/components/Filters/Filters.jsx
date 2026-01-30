@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { CATEGORIES } from '../../constants/categories';
 
-const Filters = ({ onCategoryChange, sortBy, onSortChange }) => {
+const Filters = ({ onCategoryChange, sortBy }) => {
   const [activeCategory, setActiveCategory] = useState('all');
+  const [isValue, setIsValue] = useState('name');
 
   const handleCategoryClick = (categoryId) => {
     setActiveCategory(categoryId);
@@ -10,10 +11,13 @@ const Filters = ({ onCategoryChange, sortBy, onSortChange }) => {
       onCategoryChange(categoryId);
     }
   };
+  const onSortChange = (value) => {
+    setIsValue(value);
+  };
 
   return (
     <section className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-6">
-      <div className="flex flex-wrap gap-3">
+      {/* <div className="flex flex-wrap gap-3">
         {CATEGORIES.map((category) => (
           <button
             key={category.id}
@@ -30,7 +34,7 @@ const Filters = ({ onCategoryChange, sortBy, onSortChange }) => {
             {category.name}
           </button>
         ))}
-      </div>
+      </div> */}
 
       <div className="flex items-center gap-3">
         <span className="text-gray-600 text-sm font-medium whitespace-nowrap">Сортировать по:</span>
@@ -42,8 +46,10 @@ const Filters = ({ onCategoryChange, sortBy, onSortChange }) => {
               focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent
               cursor-pointer hover:border-gray-400 transition-colors
             "
-            value={sortBy}
-            onChange={(e) => onSortChange(e.target.value)}>
+            value={isValue}
+            onChange={(e) => {
+              onSortChange(e.target.value);
+            }}>
             <option value="popular">популярности</option>
             <option value="price">цене</option>
             <option value="name">названию</option>

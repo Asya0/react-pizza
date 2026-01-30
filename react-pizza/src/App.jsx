@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from './components/Header/Header';
 import Filters from './components/Filters/Filters';
 import PizzaCard from './components/PizzaCard/PizzaCard';
@@ -6,11 +6,25 @@ import Cart from './components/Cart/Cart';
 import Footer from './components/Footer/Footer';
 import { pizzas } from './constants/pizzas';
 
+// http://localhost:3001/pizza // используем json-server
+
 const App = () => {
   const cart = [];
   const filteredItems = pizzas;
   const totalPrice = 0;
   const totalItems = 0;
+  const [items, setItems] = useState([]);
+
+  useEffect(() => {
+    fetch(`http://localhost:3001/pizzas`)
+      .then((res) => {
+        return res.json();
+      })
+      .then((arr) => {
+        setItems(arr);
+        console.log(arr);
+      });
+  }, []);
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -19,7 +33,7 @@ const App = () => {
 
         <div className="py-8">
           <div className="mb-10">
-            <Filters onCategoryChange={() => {}} sortBy="popular" onSortChange={() => {}} />
+            <Filters onCategoryChange={() => {}} sortBy="popular" />
           </div>
 
           <div className="mb-12">

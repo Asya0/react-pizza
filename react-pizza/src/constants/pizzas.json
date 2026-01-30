@@ -1,0 +1,100 @@
+{
+  "pizzas": [
+    {
+      "id": 1,
+      "name": "Пепперони",
+      "category": "meat",
+      "types": [0, 1],
+      "sizes": [26, 30, 40],
+      "price": 289,
+      "rating": 4.8,
+      "imageUrl": "🍕",
+      "isNew": false,
+      "isSpicy": true
+    },
+    {
+      "id": 2,
+      "name": "Маргарита",
+      "category": "cheese",
+      "types": [0],
+      "sizes": [30, 40],
+      "price": 249,
+      "rating": 4.6,
+      "imageUrl": "🧀",
+      "isNew": true,
+      "isSpicy": false
+    },
+    {
+      "id": 3,
+      "name": "Чикен Барбекю",
+      "category": "grill",
+      "types": [0, 1],
+      "sizes": [26, 30, 40],
+      "price": 329,
+      "rating": 4.9,
+      "imageUrl": "🍗",
+      "isNew": false,
+      "isSpicy": false
+    },
+    {
+      "id": 4,
+      "name": "Вегетарианская",
+      "category": "veg",
+      "types": [0, 1],
+      "sizes": [26],
+      "price": 269,
+      "rating": 4.5,
+      "imageUrl": "🥦",
+      "isNew": false,
+      "isSpicy": false
+    },
+    {
+      "id": 5,
+      "name": "Мексиканская",
+      "category": "spicy",
+      "types": [0, 1],
+      "sizes": [26, 30],
+      "price": 299,
+      "rating": 4.7,
+      "imageUrl": "🌶️",
+      "isNew": false,
+      "isSpicy": true
+    },
+    {
+      "id": 6,
+      "name": "4 Сыра",
+      "category": "cheese",
+      "types": [1],
+      "sizes": [26, 30, 40],
+      "price": 319,
+      "rating": 4.8,
+      "imageUrl": "🧀",
+      "isNew": true,
+      "isSpicy": false
+    },
+    {
+      "id": 7,
+      "name": "Карбонара",
+      "category": "meat",
+      "types": [0, 1],
+      "sizes": [26, 30, 40],
+      "price": 349,
+      "rating": 4.9,
+      "imageUrl": "🥓",
+      "isNew": false,
+      "isSpicy": false
+    },
+    {
+      "id": 8,
+      "name": "Гавайская",
+      "category": "closed",
+      "types": [0, 1],
+      "sizes": [26, 30, 40],
+      "price": 279,
+      "rating": 4.4,
+      "imageUrl": "🍍",
+      "isNew": false,
+      "isSpicy": false
+    }
+  ]
+}
