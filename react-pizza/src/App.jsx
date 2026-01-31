@@ -1,66 +1,24 @@
-import React, { useEffect, useState } from 'react';
 import Header from './components/Header/Header';
-import Filters from './components/Filters/Filters';
-import PizzaCard from './components/PizzaCard/PizzaCard';
-import Cart from './components/Cart/Cart';
 import Footer from './components/Footer/Footer';
-import { pizzas } from './constants/pizzas';
+import HomePage from './pages/HomePage/Homepage';
+import CartPage from './pages/CartPage/CartPage';
+import NotFoundPage from './pages/NotFound/NotFoundPage';
+import { Routes, Route } from 'react-router-dom';
 
 // http://localhost:3001/pizza // используем json-server
 
 const App = () => {
-  const cart = [];
-  const filteredItems = pizzas;
   const totalPrice = 0;
   const totalItems = 0;
-  const [items, setItems] = useState([]);
-
-  useEffect(() => {
-    fetch(`http://localhost:3001/pizzas`)
-      .then((res) => {
-        return res.json();
-      })
-      .then((arr) => {
-        setItems(arr);
-        console.log(arr);
-      });
-  }, []);
-
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <Header totalPrice={totalPrice} cartItemsCount={totalItems} />
-
-        <div className="py-8">
-          <div className="mb-10">
-            <Filters onCategoryChange={() => {}} sortBy="popular" />
-          </div>
-
-          <div className="mb-12">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {filteredItems.map((pizza) => (
-                <PizzaCard
-                  key={pizza.id}
-                  pizza={pizza}
-                  onAddToCart={() => {}}
-                  cartItem={undefined}
-                  onClickAdd={() => {}}
-                />
-              ))}
-            </div>
-          </div>
-
-          <div className="mb-16">
-            <Cart
-              cart={cart}
-              onRemoveFromCart={() => {}}
-              onUpdateQuantity={() => {}}
-              totalPrice={totalPrice}
-              onOrder={() => {}}
-            />
-          </div>
-        </div>
-
+        <Routes>
+          <Route path="/" element={<HomePage totalPrice={totalPrice} />} />
+          <Route path="/cart" element={<CartPage />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
         <Footer />
       </div>
     </div>

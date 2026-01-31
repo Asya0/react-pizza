@@ -17,7 +17,7 @@ const Filters = ({ onCategoryChange, sortBy }) => {
 
   return (
     <section className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-6">
-      {/* <div className="flex flex-wrap gap-3">
+      <div className="flex flex-wrap gap-3">
         {CATEGORIES.map((category) => (
           <button
             key={category.id}
@@ -34,7 +34,7 @@ const Filters = ({ onCategoryChange, sortBy }) => {
             {category.name}
           </button>
         ))}
-      </div> */}
+      </div>
 
       <div className="flex items-center gap-3">
         <span className="text-gray-600 text-sm font-medium whitespace-nowrap">Сортировать по:</span>
