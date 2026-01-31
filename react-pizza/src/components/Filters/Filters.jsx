@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { CATEGORIES } from '../../constants/categories';
 
-const Filters = ({ onCategoryChange, sortBy }) => {
+const Filters = ({ onCategoryChange, onClickCategory }) => {
   const [activeCategory, setActiveCategory] = useState('all');
   const [isValue, setIsValue] = useState('name');
 
@@ -18,7 +18,7 @@ const Filters = ({ onCategoryChange, sortBy }) => {
   return (
     <section className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-6">
       <div className="flex flex-wrap gap-3">
-        {CATEGORIES.map((category) => (
+        {CATEGORIES.map((category, i) => (
           <button
             key={category.id}
             className={`
@@ -30,7 +30,7 @@ const Filters = ({ onCategoryChange, sortBy }) => {
               }
               hover:scale-[1.02] active:scale-[0.98]
             `}
-            onClick={() => handleCategoryClick(category.id)}>
+            onClick={() => onClickCategory(i)}>
             {category.name}
           </button>
         ))}
