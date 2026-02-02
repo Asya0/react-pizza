@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const PizzaCard = ({ pizza, onAddToCart, cartItem, onClickAdd }) => {
+const PizzaCard = ({ pizza, onAddToCart, onClickAdd }) => {
   const [selectedSize, setSelectedSize] = useState('26');
   const typesNames = ['тонкое', 'традиционное'];
   const [activeType, setActiveType] = useState(0);
@@ -11,15 +11,11 @@ const PizzaCard = ({ pizza, onAddToCart, cartItem, onClickAdd }) => {
   const handleTypeClick = (typeId) => {
     setActiveType(typeId);
   };
+  // console.log(pizza, 'pizzaaa');
 
   return (
     <div className="relative bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden">
       <div className="p-6">
-        {/* <img
-          src={pizza.imageUrl}
-          alt={pizza.name}
-          className="w-full h-48 object-cover rounded-lg mb-4"
-        /> */}
         <div className="w-full h-48 flex items-center justify-center text-6xl mb-4 bg-gray-100 rounded-lg">
           {pizza.imageUrl}
         </div>

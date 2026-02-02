@@ -1,15 +1,17 @@
 import { useState } from 'react';
 import { CATEGORIES } from '../../constants/categories';
 
-const Filters = ({ onCategoryChange, onClickCategory }) => {
+const Filters = ({ onClickCategory, onCategoryChange }) => {
   const [activeCategory, setActiveCategory] = useState('all');
   const [isValue, setIsValue] = useState('name');
 
   const handleCategoryClick = (categoryId) => {
-    setActiveCategory(categoryId);
-    if (onCategoryChange) {
-      onCategoryChange(categoryId);
+    setActiveCategory(categoryId.id);
+    if (onClickCategory) {
+      onClickCategory(categoryId.id);
+      // onCategoryChange(categoryId);
     }
+    console.log(categoryId);
   };
   const onSortChange = (value) => {
     setIsValue(value);
@@ -30,7 +32,7 @@ const Filters = ({ onCategoryChange, onClickCategory }) => {
               }
               hover:scale-[1.02] active:scale-[0.98]
             `}
-            onClick={() => onClickCategory(i)}>
+            onClick={() => handleCategoryClick(category)}>
             {category.name}
           </button>
         ))}

@@ -11,14 +11,14 @@ const HomePage = (totalPrice) => {
   const filteredItems = pizzas;
   const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [categoryId, setCategoryId] = useState(0);
+  const [category, setCategory] = useState('all');
   const [sortType, setSortType] = useState(0);
 
-  //   console.log(categoryId);
+  //   console.log(category);
 
   useEffect(() => {
     // fetch(`http://localhost:3001/pizzas`)
-    fetch(`http://localhost:3001/pizzas?id=1`)
+    fetch(`http://localhost:3001/pizzas?category=` + category)
       .then((res) => res.json())
       .then((pizza) => {
         console.log(pizza);
@@ -26,16 +26,16 @@ const HomePage = (totalPrice) => {
         setIsLoading(false);
       });
     window.scrollTo(0, 0); // помогает, например, из корзины попадать на вверх HomePage
-  }, []);
+  }, [category]);
 
   return (
     <div className="py-8">
       <div className="mb-10">
         <Filters
-          onCategoryChange={() => {}}
           sortType={sortType}
-          categoryId={categoryId}
-          onClickCategory={(id) => setCategoryId(id)}
+          categoryId={category}
+          onClickCategory={(id) => setCategory(id)}
+          onCategoryChange={() => {}}
         />
       </div>
 
